@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projeto de Computação Visual</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <h1>Projeto de Computação Visual</h1>
+  <div id="drop-zone">Arraste uma imagem aqui ou clique para selecionar</div>
+  <input type="file" id="fileInput" style="display:none;" accept="image/*" />
+  <div id="result"></div>
+</body>
+</html>
