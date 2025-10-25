@@ -53,8 +53,56 @@ function uploadFile(file) {
         // Mostra a imagem enviada
         resultDiv.innerHTML = `
           <h3>Imagem enviada:</h3>
-          <img src="/uploads/${data.original}" alt="Imagem" />
+          <div class="image-container">
+            <img id="originalImage" src="/uploads/${data.original}" alt="Imagem Original" />
+            <img id="bilateralImage" class="hidden" alt="Imagem Filtrada" />
+          </div>
+          <br>
+          <button id="toggleBtn">Aplicar Filtro Bilateral</button>
         `;
+
+        // evento do botão
+        const btn = document.getElementById('toggleBtn');
+        const imgOrig = document.getElementById('originalImage');
+        const imgBilat = document.getElementById('bilateralImage');
+        let originalSrc = imgOrig.src;
+        let bilateralSrc = null;
+        let showingBilateral = false;
+
+        // botão que alterna entre imagem original e filtrada
+        btn.addEventListener('click', async () => {
+          // Envia e salva a imagem
+          if (!bilateralSrc) {
+            const form = new FormData();
+            const res = await fetch(originalSrc);
+            const blob = await res.blob();
+            form.append('image', blob, 'imagem.png');
+            form.append('d', 25);
+            form.append('sigmaColor', 250);
+            form.append('sigmaSpace', 250);
+            // envia a imagem para aplicar o filtro bilateral
+            const response = await fetch('/api/denoise/bilateral', {
+              method: 'POST',
+              body: form
+            });
+            const json = await response.json();
+            bilateralSrc = json.output;
+            imgBilat.src = bilateralSrc;
+          }
+
+          // Alterna visual entre original e bilateral
+          showingBilateral = !showingBilateral;
+
+          if (showingBilateral) {
+            imgBilat.classList.remove('hidden');
+            imgOrig.classList.add('move-left');
+            btn.textContent = 'Mostrar Original';
+          } else {
+            imgBilat.classList.add('hidden');
+            imgOrig.classList.remove('move-left');
+            btn.textContent = 'Aplicar Filtro Bilateral';
+          }
+        });
       }
     })
     .catch(err => {

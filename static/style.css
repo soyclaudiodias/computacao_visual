@@ -32,3 +32,48 @@ img {
     max-width: 500px;
     border-radius: 8px;
 }
+
+/* Botão para alternar a imagem */
+button {
+  background-color: #333;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+button:hover {
+  background-color: #555;
+}
+
+/* Imagens sempre com proporção e tamanho definidos */
+.image-container img {
+  max-width: 40vw;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Se a tela for pequena, elas empilham */
+@media (max-width: 900px) {
+  .image-container {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+
+/* Esconde a imagem bilateral */
+.image-container img.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Move a imagem original para a esquerda */
+.move-left {
+  transform: translateX(-15px);
+  transition: transform 0.6s ease;
+}
+
