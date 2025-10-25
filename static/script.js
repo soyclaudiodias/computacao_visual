@@ -114,7 +114,7 @@ function renderResultLayout(originalUrl) {
 
           <!-- Coluna imagem PROCESSADA -->
           <div class="result-col image-col">
-            <div class="img-label">IMAGEM COM CLAHE</div>
+            <div class="img-label">CLAHE</div>
             <div class="image-frame">
               <img
                 id="imgClaheResult"
@@ -158,7 +158,7 @@ function renderResultLayout(originalUrl) {
 
           <!-- Coluna imagem PROCESSADA -->
           <div class="result-col image-col">
-            <div class="img-label">IMAGEM COM FILTRO BILATERAL</div>
+            <div class="img-label">FILTRO BILATERAL</div>
             <div class="image-frame">
               <img
                 id="imgBilateralResult"
