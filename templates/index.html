@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <title>Projeto de Computação Visual</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-</head>
-<body>
-  <h1>Projeto de Computação Visual</h1>
-  <div id="drop-zone">Arraste uma imagem aqui ou clique para selecionar</div>
-  <input type="file" id="fileInput" style="display:none;" accept="image/*" />
-  <div id="result"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Processamento de Imagem (Filtragem Bilateral / Equalização CLAHE)
+    </title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  </head>
+  <body>
+    <main class="app-wrapper">
+      <h1 class="app-title">
+        Processamento de Imagem (Filtragem Bilateral / Equalização CLAHE)
+      </h1>
+      <div id="upload-section">
+        <div id="drop-zone" class="drop-zone">
+          <p class="drop-zone-text">
+            Arraste uma imagem aqui<br />
+            <span class="or">ou</span><br />
+            <span class="click-here">clique para selecionar</span>
+          </p>
+        </div>
+        <!-- botão para trocar imagem depois -->
+        <button id="changeImageBtn" class="action-btn small-btn hidden">
+          Trocar imagem
+        </button>
+        <input
+          type="file"
+          id="fileInput"
+          class="file-input-hidden"
+          accept="image/*"
+        />
+      </div>
+      <div id="result"></div>
+    </main>
+  </body>
 </html>

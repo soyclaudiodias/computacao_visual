@@ -49,7 +49,7 @@ def main():
         raise IOError(f"Não foi possível salvar em: {args.output}")
     
     # Salvamento com sucesso
-    print(f"✔ Denoise Bilateral salvo em: {args.output}")
+    print(f"Denoise Bilateral salvo em: {args.output}")
 
     # Exibe a imagem original e com o ruido bilateral aplicado
     if args.show:
@@ -58,6 +58,6 @@ def main():
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         
-## Executa a função principal
+
 if __name__ == "__main__":
     main()
