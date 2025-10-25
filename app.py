@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = os.path.join(app.root_path, "uploads")
 
 # Aplica filtro bilateral pra remover ruído e converte para cinza se a imagem for colorida
-def denoise_bilateral(img_bgr, d=25, sigma_color=250, sigma_space=250, force_gray=True):
+def denoise_bilateral(img_bgr, d=25, sigma_color=250, sigma_space=250, force_gray=False):
     if force_gray and img_bgr.ndim == 3:
         img_bgr = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     return cv2.bilateralFilter(img_bgr, d, sigma_color, sigma_space)
@@ -70,7 +70,7 @@ def api_denoise_bilateral():
         return jsonify(error="Falha ao ler a imagem enviada"), 400
 
     # Aplica e salva o filtro bilateral
-    out = denoise_bilateral(img, d, sigma_color, sigma_space)
+    out = denoise_bilateral(img, d, sigma_color, sigma_space, force_gray=False)
     cv2.imwrite(out_path, out)
 
     return jsonify(
@@ -171,7 +171,7 @@ def api_denoise_bilateral():
         return jsonify(error="Falha ao ler a imagem enviada"), 400
 
     # aplica filtro bilateral
-    out = denoise_bilateral(img, d, sigma_color, sigma_space)
+    out = denoise_bilateral(img, d, sigma_color, sigma_space, force_gray=False)
 
     # salva resultado
     cv2.imwrite(out_path, out)

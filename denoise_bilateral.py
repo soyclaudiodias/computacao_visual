@@ -3,11 +3,7 @@ import os
 import cv2
 
 def bilateral_denoise(img, d=9, sigma_color=75, sigma_space=75, force_gray=False):
-    # Aplica tons de cinza quando imagem colorida
-    if force_gray and img.ndim == 3:
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    return cv2.bilateralFilter(img, d, sigma_color, sigma_space)
-
+    
 def main():
     # Configura os argumentos de linha de comando
     ap = argparse.ArgumentParser(description="Denoise Bilateral (OpenCV).")
@@ -35,7 +31,6 @@ def main():
         d=args.d,
         sigma_color=args.sigmaColor,
         sigma_space=args.sigmaSpace,
-        force_gray=args.gray,
     )
 
     # Aplica o nome do arquivo saída
