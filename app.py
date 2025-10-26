@@ -99,11 +99,6 @@ os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 
 def denoise_bilateral(img_bgr, d=25, sigma_color=250, sigma_space=250, force_gray=True):
-    """
-    Reduz ruído preservando bordas com filtro bilateral.
-    Se force_gray=True e img tiver 3 canais, converte pra grayscale
-    antes de aplicar (saída então será 1 canal).
-    """
     if force_gray and img_bgr.ndim == 3:
         img_bgr = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
     return cv2.bilateralFilter(img_bgr, d, sigma_color, sigma_space)
