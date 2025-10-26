@@ -12,7 +12,6 @@ def main():
     ap.add_argument("--d", type=int, default=9, help="Diâmetro da vizinhança (ex.: 5, 9, 15)")
     ap.add_argument("--sigmaColor", type=float, default=75.0, help="Sigma no domínio de cor")
     ap.add_argument("--sigmaSpace", type=float, default=75.0, help="Sigma no domínio espacial")
-    ap.add_argument("--gray", action="store_true", help="Forçar grayscale")
     ap.add_argument("--show", action="store_true", help="Mostrar antes/depois")
     args = ap.parse_args()
 
